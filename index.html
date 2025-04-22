@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام تسجيل البيانات</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">نظام تسجيل البيانات</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_login.php">دخول المشرف</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">تسجيل البيانات</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="registrationForm" action="submit.php" method="POST" enctype="multipart/form-data">
+                            <!-- البيانات الأساسية -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">رقم الجلوس</label>
+                                    <input type="text" class="form-control" name="seat_number" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">الاسم رباعي</label>
+                                    <input type="text" class="form-control" name="full_name" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">الرقم القومي/رقم جواز السفر</label>
+                                    <input type="text" class="form-control" name="national_id" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">رقم الهاتف</label>
+                                    <input type="tel" class="form-control" name="phone_number" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">النوع</label>
+                                    <select class="form-select" name="gender" required>
+                                        <option value="">اختر...</option>
+                                        <option value="male">ذكر</option>
+                                        <option value="female">أنثى</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">السن</label>
+                                    <input type="number" class="form-control" name="age" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">محل الإقامة</label>
+                                    <input type="text" class="form-control" name="residence" required>
+                                </div>
+                            </div>
+
+                            <!-- المؤهلات والتعليم -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">المؤهل الدراسي</label>
+                                    <input type="text" class="form-control" name="qualification" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">نوع التعليم</label>
+                                    <select class="form-select" name="education_type" required>
+                                        <option value="">اختر...</option>
+                                        <option value="regular">نظامي</option>
+                                        <option value="distance">تعليم عن بعد</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- معلومات العمل والدراسة -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">الوظيفة</label>
+                                    <input type="text" class="form-control" name="job">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">جهة العمل</label>
+                                    <input type="text" class="form-control" name="workplace">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">الكلية</label>
+                                    <input type="text" class="form-control" name="college">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">الفرقة</label>
+                                    <input type="text" class="form-control" name="grade">
+                                </div>
+                            </div>
+
+                            <!-- المراحل -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">المرحلة الحالية</label>
+                                    <select class="form-select" name="current_stage" id="currentStage" required>
+                                        <option value="">اختر...</option>
+                                        <option value="preparatory">تمهيدية</option>
+                                        <option value="intermediate">متوسطة</option>
+                                        <option value="specialized">تخصصية</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 stage-fields" id="specializedFields" style="display: none;">
+                                <div class="col-md-12">
+                                    <label class="form-label">قسم التخصصية</label>
+                                    <input type="text" class="form-control" name="specialization">
+                                </div>
+                            </div>
+
+                            <!-- معلومات إضافية -->
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">المذهب</label>
+                                    <select class="form-select" name="sect" required>
+                                        <option value="">اختر...</option>
+                                        <option value="hanafi">حنفي</option>
+                                        <option value="shafi">شافعي</option>
+                                        <option value="maliki">مالكي</option>
+                                        <option value="hanbali">حنبلي</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">نظام الحضور</label>
+                                    <select class="form-select" name="attendance_system" required>
+                                        <option value="">اختر...</option>
+                                        <option value="regular">منتظم</option>
+                                        <option value="irregular">غير منتظم</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">من ذوي الهمم</label>
+                                    <select class="form-select" name="special_needs" required>
+                                        <option value="">اختر...</option>
+                                        <option value="1">نعم</option>
+                                        <option value="0">لا</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- المرفقات -->
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">صورة المؤهل الدراسي</label>
+                                    <input type="file" class="form-control" name="qualification_image" accept="image/*,application/pdf" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">صورة البطاقة</label>
+                                    <input type="file" class="form-control" name="id_card_image" accept="image/*,application/pdf" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">صورة إيصال الدفع</label>
+                                    <input type="file" class="form-control" name="payment_receipt_image" accept="image/*,application/pdf" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">الرقم المرجعي بإيصال الدفع</label>
+                                    <input type="text" class="form-control" name="payment_reference" required>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">حفظ البيانات</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

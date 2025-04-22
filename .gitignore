@@ -1,0 +1,19 @@
+# PHP files
+.env
+vendor/
+composer.lock
+
+# IDE files
+.idea/
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Uploaded files
+uploads/
+*.log
+
+# Configuration files with sensitive data
+config.php 
