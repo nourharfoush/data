@@ -37,3 +37,9 @@ CREATE TABLE IF NOT EXISTS students (
     payment_reference VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- إنشاء حساب مشرف افتراضي
+INSERT INTO users (username, password, is_admin) 
+SELECT 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1 
+WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'admin');
+-- كلمة المرور الافتراضية هي: password
